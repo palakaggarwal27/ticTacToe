@@ -18,6 +18,10 @@ function loaded() {
       }
 
     reset.addEventListener('click', resetGame);
+    reset.addEventListener('click', () => {
+        currentplayer = 'X';
+        player.textContent = 'X';
+    });
 
     function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -31,8 +35,6 @@ function loaded() {
             cell[i].style.pointerEvents = 'auto';
             cell[i].style.animation = '';
         }
-        currentplayer = 'X';
-        player.textContent="X";
     };
 
     function mark(e) {
@@ -76,16 +78,21 @@ function loaded() {
             const pB = cell[b].querySelector('p').textContent;
             const pC = cell[c].querySelector('p').textContent;
             if (pA && pA === pB && pA === pC) {
+                // drawLine(a,c);
                 await delay(500);
                 alert(`Player ${pA} wins!`);
+                
                 if (pA === 'X') {
-                    Xscore.textContent=parseInt(Xscore.textContent) + 1 
+                    Xscore.textContent=parseInt(Xscore.textContent) + 1
+                    
                 }
                 else{
                     Oscore.textContent=parseInt(Oscore.textContent) + 1
+
                 }
-                resetGame(1000);
-                return;
+
+                resetGame(700);
+                continue;
         }   
         
     }
@@ -106,4 +113,24 @@ function loaded() {
         }
 }
 }
+// function drawLine(start, end) {
+//     if (start === 0 && end === 2) {
+//         document.getElementById('winHorizontalTop').style.width = '100%';
+//     } else if (start === 3 && end === 5) {
+//         document.getElementById('winHorizontalMiddle').style.width = '100%';
+//     } else if (start === 6 && end === 8) {
+//         document.getElementById('winHorizontalBottom').style.width = '100%';
+//     } else if (start === 0 && end === 6) {
+//         document.getElementById('winVerticalLeft').style.height = '100%';
+//     } else if (start === 1 && end === 7) {
+//         document.getElementById('winVerticalMiddle').style.height = '100%';
+//     } else if (start === 2 && end === 8) {
+//         document.getElementById('winVerticalRight').style.height = '100%';
+//     } else if (start === 0 && end === 8) {
+//         document.getElementById('winDiagonalLeft').style.width = '141%';
+//     } else if (start === 2 && end === 6) {
+//         document.getElementById('winDiagonalRight').style.width = '141%';
+//     }
+
 }
+

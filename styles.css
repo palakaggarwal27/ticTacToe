@@ -252,3 +252,10 @@ h1{
         margin-top: 20vw;
     }
 }
+
+.winline{
+    position:absolute;
+    background-color: red;
+    /* display: none; */
+}
+
