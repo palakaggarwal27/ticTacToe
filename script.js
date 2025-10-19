@@ -12,6 +12,7 @@ function loaded() {
     console.log(reset);
 
     let currentplayer = 'X';
+    let win=false;
     player=document.getElementById('player');
 
     
@@ -41,7 +42,11 @@ function loaded() {
         }
         winline=document.getElementsByClassName('winline');
         for(let i=0;i<winline.length;i++){
-            winline[i].style.display='none';
+            winline[i].style.display='none';}
+
+        result=document.getElementsByClassName('result');
+        for(let j=0;j<result.length;j++){
+            result[j].style.display='none';
         }
     };
 
@@ -63,9 +68,11 @@ function loaded() {
                 player.textContent="X";
             }
             checkWin();
-            checkfull();
+            if (win!=true){
+            checkfull();}
         }
     async function checkWin() {
+        win=false;
         Xscore=document.getElementById('Xscore');
         Oscore=document.getElementById('Oscore');
         const winCombinations = [
@@ -87,17 +94,22 @@ function loaded() {
             if (pA && pA === pB && pA === pC) {
                 drawLine(a,c);
                 await delay(500);
-                alert(`Player ${pA} wins!`);
+                
                 
                 if (pA === 'X') {
-                    Xscore.textContent=parseInt(Xscore.textContent) + 1
+                    Xscore.textContent=parseInt(Xscore.textContent) + 1;
+                    document.getElementById('Xscore').style.animation = 'fadeIn 0.5s forwards';
+                    document.getElementById("X").style.display='block';
                     
                 }
                 else{
-                    Oscore.textContent=parseInt(Oscore.textContent) + 1
+                    Oscore.textContent=parseInt(Oscore.textContent) + 1;
+                    document.getElementById('Oscore').style.animation = 'fadeIn 0.5s forwards';
+                    document.getElementById("O").style.display='block';
 
                 }
-                resetGame(700);
+                resetGame(900);
+                win=true;
                 continue;
         }   
         
@@ -114,7 +126,8 @@ function loaded() {
         }
         if (full) {
             await delay(500);
-            alert("It's a draw!");
+            
+            document.getElementById("draw").style.display='block';
             resetGame(1000);
         }
 }
@@ -144,4 +157,6 @@ function loaded() {
 
 
 }
+
+
 
