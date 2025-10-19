@@ -256,6 +256,73 @@ h1{
 .winline{
     position:absolute;
     background-color: red;
-    /* display: none; */
+    border-radius: 5px;
 }
 
+#winHorizontalTop{
+    top:calc(16.66%);
+    left:4%;
+    width:90%;
+    height:3px;
+    display:none;
+}
+
+#winHorizontalMiddle{
+    top:calc(50%);
+    left:4%;
+    width:90%;
+    height:3px;
+    display: none;
+}
+
+#winHorizontalBottom{
+    bottom:16.66%;
+    left:4%;
+    width:90%;
+    height:3px;
+    display: none;
+}
+
+#winVerticalLeft{
+    top:4%;
+    left:16.66%;
+    width:3px;
+    height:90%;
+    display: none;
+}
+
+#winVerticalMiddle{
+    top:4%;
+    left:50%;
+    width:3px;
+    height:90%;
+    display: none;
+}
+
+#winVerticalRight{
+    top:4%;
+    right:16.66%;
+    width:3px;
+    height:90%;
+    display: none;
+}
+
+#winDiagonalLeft{
+    top:-10%;
+    left:50%;
+    width:3px;
+    height:121%;
+    transform: rotate(-45deg);
+    display: none;
+
+}
+
+#winDiagonalRight{
+    top:-10%;
+    left:50%;
+    width:3px;
+    height:121%;
+    transform: rotate(45deg);
+    display: none;
+
+}
