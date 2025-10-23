@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function loaded() {
     const cell = document.getElementsByClassName('cell');
-    reset=document.getElementById('resetBtn');
+    const reset=document.getElementById('resetBtn');
     console.log(reset);
 
     let currentplayer = 'X';
@@ -40,6 +40,8 @@ function loaded() {
             cell[i].style.pointerEvents = 'auto';
             cell[i].style.animation = '';
         }
+        win = false;
+
         winline=document.getElementsByClassName('winline');
         for(let i=0;i<winline.length;i++){
             winline[i].style.display='none';}
@@ -50,7 +52,7 @@ function loaded() {
         }
     };
 
-    function mark(e) {
+    async function mark(e) {
         const cellEl= e.currentTarget;
         const p = cellEl.querySelector('p');
         cellEl.style.animation = 'popIn 0.5s forwards';
@@ -67,14 +69,14 @@ function loaded() {
                 currentplayer = 'X';
                 player.textContent="X";
             }
-            checkWin();
-            if (win!=true){
-            checkfull();}
+            await checkWin();
+            if (win === false) {
+                checkfull();
+            }
         }
     async function checkWin() {
-        win=false;
-        Xscore=document.getElementById('Xscore');
-        Oscore=document.getElementById('Oscore');
+        const Xscore=document.getElementById('Xscore');
+        const Oscore=document.getElementById('Oscore');
         const winCombinations = [
             [0, 1, 2],
             [3, 4, 5],
@@ -100,16 +102,18 @@ function loaded() {
                     Xscore.textContent=parseInt(Xscore.textContent) + 1;
                     document.getElementById('Xscore').style.animation = 'fadeIn 0.5s forwards';
                     document.getElementById("X").style.display='block';
+                    win = true;
                     
                 }
                 else{
                     Oscore.textContent=parseInt(Oscore.textContent) + 1;
                     document.getElementById('Oscore').style.animation = 'fadeIn 0.5s forwards';
                     document.getElementById("O").style.display='block';
+                    win = true;
 
                 }
                 resetGame(900);
-                win=true;
+                
                 continue;
         }   
         
